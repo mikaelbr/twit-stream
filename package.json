@@ -27,7 +27,7 @@
   "license": "MIT",
   "dependencies": {
     "oauth": "~0.9.11",
-    "streamify": "~0.2.2",
+    "streamify": "^0.2.3",
     "split": "~0.3.0"
   },
   "devDependencies": {
