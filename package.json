@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha -R spec"
   },
-  "homepage": "http://github.com/mikaelbr/twit-stream/issues",
+  "homepage": "http://github.com/mikaelbr/twit-stream",
   "bugs": {
     "url": "http://github.com/mikaelbr/twit-stream/issues"
   },
