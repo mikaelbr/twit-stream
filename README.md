@@ -27,7 +27,7 @@ stream.pipe(objectHandler);
 // Where objectHandler is an arbitrary write stream
 ```
 
-*See [#examples](more examples)*
+*See [more examples](#examples)*
 
 ## Stream Endpoints
 
@@ -40,15 +40,17 @@ See information about the different end points on the Twitter Developer site
 ## API
 
 ### `.filter(data)`
-Parameter: `data` is request payload values (POST body) as documented by Twitter dev site.
+Parameter: `data` is request payload values (POST body) as documented by Twitter dev site.  
 Returns: `Stream` (with objectMode: true)
+
 
 ### `.sample(params)`
-Parameter: `params` is values as documented by Twitter dev site
+Parameter: `params` is values as documented by Twitter dev site  
 Returns: `Stream` (with objectMode: true)
 
+
 ### `.firehose(params)`
-Parameter: `params` is values as documented by Twitter dev site
+Parameter: `params` is values as documented by Twitter dev site  
 Returns: `Stream` (with objectMode: true)
 
 **Note: You need special premissions by Twitter to have access to the firehose endpoint.**
