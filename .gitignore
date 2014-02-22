@@ -2,3 +2,4 @@
 node_modules/
 
 example/sample.dat
+example/options.json

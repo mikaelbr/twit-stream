@@ -25,6 +25,29 @@ describe('Twitter', function() {
       done();
     });
 
+    it('should default to being in objectMode', function (done) {
+      var t = new Twitter({
+        consumer_key: '1',
+        consumer_secret: '2',
+        oauth_token: '3',
+        oauth_secret: '4'
+      });
+      t.options.should.have.property('objectMode', true);
+      done();
+    });
+
+    it('should allow objectMode to be overridden', function (done) {
+      var t = new Twitter({
+        objectMode: false,
+        consumer_key: '1',
+        consumer_secret: '2',
+        oauth_token: '3',
+        oauth_secret: '4'
+      });
+      t.options.should.have.property('objectMode', false);
+      done();
+    });
+
     it('should throw error when not passing consumer key or secret', function (done) {
       (function(){
         var t = new Twitter({

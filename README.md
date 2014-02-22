@@ -2,7 +2,8 @@
 
 A simplification for reading Twitter data using Node.JS Streams.
 Pass in OAuth info and select Twitter stream method, and get a
-Node object mode stream returned.
+Node stream2 returned. Choose whether you want a stream of objects
+(objectMode: true) or a stream of buffers.
 
 ## Usage and Installation
 
@@ -39,6 +40,34 @@ See information about the different end points on the Twitter Developer site
 
 ## API
 
+### `new Twitter(options)`
+Parameter: `option` is object of options.  
+Returns: `Twitter` instance
+
+Options must contain OAuth info
+```json
+{
+  'consumer_key': '',
+  'consumer_secret': '',
+  'oauth_token': '',
+  'oauth_secret': ''
+}
+```
+
+In addition to OAuth data, options allow you to define if the
+returned streams should be in objectMode or not.
+
+#### `options.objectMode`
+Type: `Boolean`  
+Default: `true`
+
+With object mode the data passed is a stream of Twitter objects.
+By setting the `objectMode` to false, the streamed data is a
+stream of buffered strings, one tweet buffered up at the time.
+
+`objectMode: false` could be used to pipe twitter data directly
+to file or to any other write stream requiering buffers.
+
 ### `.filter(data)`
 Parameter: `data` is request payload values (POST body) as documented by Twitter dev site.  
 Returns: `Stream` (with objectMode: true)
@@ -58,14 +87,8 @@ Returns: `Stream` (with objectMode: true)
 ## Examples 
 
 ```javascript
-
-new Twitter(oauthOptions)
-  .sample()
-  // Convert from object mode stream to buffered stream
-  .pipe(through.obj(function (obj, enc, next) {
-    this.push(new Buffer(JSON.stringify(obj)) + endOfLine);
-    next();
-  }))
+options.objectMode = false;
+new Twitter(options).sample()
   // pipe to file
   .pipe(fs.createWriteStream(__dirname + '/sample.dat'));
 ```
