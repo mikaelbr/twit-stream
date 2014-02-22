@@ -6,6 +6,14 @@
   "scripts": {
     "test": "mocha -R spec"
   },
+  "homepage": "http://github.com/mikaelbr/twit-stream/issues",
+  "bugs": {
+    "url" : "http://github.com/mikaelbr/twit-stream/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/mikaelbr/twit-stream.git"
+  },
   "keywords": [
     "stream2",
     "stream",
@@ -15,7 +23,7 @@
     "twitter stream",
     "streams"
   ],
-  "author": "Mikael Brevik <mikaelbre@gmail.com>",
+  "author": "Mikael Brevik <mikaelbre@gmail.com> (http://git.mikaelb.net)",
   "license": "MIT",
   "dependencies": {
     "oauth": "~0.9.11",
