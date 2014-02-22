@@ -179,7 +179,7 @@
         });
 
         stream.on('end', function () {
-          data.length.should.equal(10);
+          data.length.should.equal(3);
           stream.destroy();
           done();
         });
@@ -201,7 +201,7 @@
         });
 
         stream.on('end', function () {
-          data.length.should.equal(10);
+          data.length.should.equal(3);
           stream.destroy();
           done();
         });
@@ -213,50 +213,6 @@
     });
 
   });
-
-
-  function TestReader() {
-    Readable.apply(this);
-    var data = JSON.stringify(require(__dirname + '/fixture/tweet.json')) + "\n";
-
-    this._buffer = data;
-    this._pos = 0;
-    this._bufs = 10;
-  }
-
-  util.inherits(TestReader, Readable);
-
-  TestReader.prototype._read = function(n) {
-    var max = this._buffer.length - this._pos;
-    n = Math.max(n, 0);
-    var toRead = Math.min(n, max);
-    if (toRead === 0) {
-      // simulate the read buffer filling up with some more bytes some time
-      // in the future.
-      this._pos = 0;
-      this._bufs -= 1;
-      if (this._bufs <= 0) {
-        // read them all!
-        if (!this.ended)
-          this.push(null);
-      } else {
-        // now we have more.
-        // kinda cheating by calling _read, but whatever,
-        // it's just fake anyway.
-        this._read(n);
-      }
-      return;
-    }
-
-    var ret = this._buffer.slice(this._pos, this._pos + toRead);
-    this._pos += toRead;
-    if (this._bufs <= 1) {
-      // no newline on last.
-      ret = ret.substring(0, ret.length - 1);
-    }
-    this.push(ret);
-  };
-
 
   function getMock (options, responseCreator) {
     var stream = getStreamMock();
@@ -286,7 +242,7 @@
   }
 
   function getStreamMock (statusCode) {
-    var stream = new TestReader();
+    var stream = fs.createReadStream(__dirname + '/fixture/tweet.json');
     stream.statusCode = statusCode || 200;
     return stream;
   }
