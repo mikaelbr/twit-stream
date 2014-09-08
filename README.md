@@ -8,7 +8,7 @@ Node stream2 returned. Choose whether you want a stream of objects
 ## Usage and Installation
 
 ```sh
-npm install --save twitter-stream
+npm install --save twit-stream
 ```
 
 ```javascript
